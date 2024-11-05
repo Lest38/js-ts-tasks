@@ -6,12 +6,12 @@
  */
 module.exports.sumInRange = function sumInRange(start, end) {
   let sum = 0;
-  if (end < start) {
+  /*  if (end < start) {
     let start1 = start;
     start = end;
     end = start1;
-  }
-  for (let i = start; i <= end; i++) {
+  } */
+  for (let i = Math.min(start, end); i <= Math.max(start, end); i++) {
     sum += parseInt(i);
   }
   return sum;
