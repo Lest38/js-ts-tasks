@@ -12,7 +12,7 @@ module.exports.sumInRange = function sumInRange(start, end) {
     end = start1;
   } */
   for (let i = Math.min(start, end); i <= Math.max(start, end); i++) {
-    sum += parseInt(i);
+    sum += i;
   }
   return sum;
 };
