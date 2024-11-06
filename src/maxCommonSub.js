@@ -9,40 +9,25 @@
  * @returns {string}
  */
 module.exports.maxCommonSub = function maxCommonSub(str1, str2) {
-  let longestSubstring = '';
-  let substringStartPosI;
-  let substringStartPosJ;
-  let substring = '';
+  let maxSubstring = '';
 
   for (let i = 0; i < str1.length; i++) {
     for (let j = 0; j < str2.length; j++) {
-      if (
-        str1[i] === str2[j] &&
-        (substringStartPosI === undefined || substringStartPosI === i - 1) &&
-        (substringStartPosJ === undefined || substringStartPosJ === j - 1)
-      ) {
-        substring += str1[i];
+      let substring = '';
+      let k = i;
+      let f = j;
 
-        substringStartPosJ = j;
-        substringStartPosI = i;
-      } else if (
-        (substringStartPosJ === j - 1 && substringStartPosI === i - 1) ||
-        substringStartPosJ === str2.length - 1 ||
-        substringStartPosI === str1.length - 1
-      ) {
-        if (substring.length > longestSubstring.length) {
-          longestSubstring = substring;
-          i = -1;
-        }
-        substringStartPosJ = undefined;
-        substringStartPosI = undefined;
-        substring = '';
+      while (k < str1.length && f < str2.length && str1[k] === str2[f]) {
+        substring += str1[k];
+        k++;
+        f++;
       }
 
-      if (j === str2.length - 1 && i === str1.length - 1 && substring.length > longestSubstring.length) {
-        longestSubstring = substring;
+      if (substring.length > maxSubstring.length) {
+        maxSubstring = substring;
       }
     }
   }
-  return longestSubstring;
+
+  return maxSubstring;
 };

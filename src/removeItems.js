@@ -5,5 +5,19 @@
  * @returns {Object}
  */
 module.exports.removeItems = function removeItems(arr, value) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  let removedArr = [];
+
+  for (let elem of arr) {
+    if (typeof elem === 'object' && elem !== null && typeof value === 'object' && value !== null) {
+      if (JSON.stringify(elem) !== JSON.stringify(value)) {
+        removedArr.push(elem);
+      }
+    } else {
+      if (elem !== value) {
+        removedArr.push(elem);
+      }
+    }
+  }
+
+  return removedArr;
 };
