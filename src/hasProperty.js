@@ -23,5 +23,4 @@ module.exports.hasProperty = function hasProperty(object, prop) {
   }
 
   return false;
-  //return Object.prototype.hasOwnProperty.call(object, prop);
 };
