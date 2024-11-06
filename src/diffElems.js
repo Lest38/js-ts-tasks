@@ -13,14 +13,4 @@ module.exports.diffElems = function diffElems(arr) {
     }
   }
   return differentElem.length;
-
-  /*for (let i = 0; i < arr.length; i++)
-  {
-    if (arr.indexOf(arr[i]) === i)
-    {
-      elemCount++;
-    }
-  }
-
-  return elemCount; */
 };
