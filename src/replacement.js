@@ -10,12 +10,12 @@
 module.exports.replacement = function replacement(arr) {
   let replacedArr = [];
   for (let elem of arr) {
-    let lessThanTen = Math.abs(elem / 10);
-    if (lessThanTen < 1) {
+    let lessThanTenNum = Math.abs(elem / 10);
+    if (lessThanTenNum < 1) {
       replacedArr.push(1);
-    } else if (lessThanTen < 10) {
+    } else if (lessThanTenNum < 10) {
       replacedArr.push(2);
-    } else if (lessThanTen < 100) {
+    } else if (lessThanTenNum < 100) {
       replacedArr.push(3);
     } else {
       replacedArr.push(4);
