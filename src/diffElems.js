@@ -4,7 +4,7 @@
  * @returns {number}
  */
 module.exports.diffElems = function diffElems(arr) {
-  differentElem = [];
+  let differentElem = [];
   //elemCount = 0;
 
   for (let elem = 0; elem < arr.length; elem++) {
