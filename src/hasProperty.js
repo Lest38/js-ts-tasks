@@ -4,7 +4,6 @@
  * @param {Object} prop
  * @returns {boolean}
  */
-const { prototype } = require('mocha');
 module.exports.hasProperty = function hasProperty(object, prop) {
   let isPrototype = false;
   do {
@@ -18,9 +17,6 @@ module.exports.hasProperty = function hasProperty(object, prop) {
     }
   } while ((Object.prototype = Object.getPrototypeOf(Object.prototype)));
   for (let key in object) {
-    let a = 'ad';
-    let r = Object.prototype.space_name;
-    let b = Object.prototype;
     if (key === prop) {
       return true;
     }
