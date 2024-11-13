@@ -4,5 +4,23 @@
  * @returns {function}
  */
 module.exports.primeNumbers = function primeNumbers(highestNumber) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  function isPrime(num) {
+    for (let i = 2; i <= num / 2; i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  return function (start, end) {
+    const primes = [];
+
+    for (let i = start; i <= end; i++) {
+      if (isPrime(i)) {
+        primes.push(i);
+      }
+    }
+    return primes;
+  };
 };

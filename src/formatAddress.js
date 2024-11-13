@@ -4,5 +4,8 @@
  * @returns {function}
  */
 module.exports.formatAddress = function formatAddress() {
-  throw new Error('Not implemented'); // remove me and write a solution
+  return function (addressNonformatted) {
+    const addressArray = Object.values(addressNonformatted);
+    return addressArray.join(', ');
+  };
 };

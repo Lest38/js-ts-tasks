@@ -14,5 +14,10 @@
  * @returns {function}
  */
 module.exports.censorship = function censorship(forbidden) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  return function (str) {
+    for (let element of forbidden) {
+      str = str.replaceAll(element, '*'.repeat(element.length));
+    }
+    return str;
+  };
 };

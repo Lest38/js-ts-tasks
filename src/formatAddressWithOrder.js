@@ -9,5 +9,12 @@
  * @returns {function}
  */
 module.exports.formatAddressWithOrder = function formatAddressWithOrder(order) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  return function (addressNonformatted) {
+    let addressFormatted = '';
+    order.forEach(key => {
+      addressFormatted += addressNonformatted[key] + ', ';
+    });
+    addressFormatted = addressFormatted.slice(addressNonformatted.length, -2);
+    return addressFormatted;
+  };
 };
