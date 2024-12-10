@@ -1,5 +1,3 @@
-const { error } = require('lint-staged/lib/figures');
-
 class User {
   #firstName;
   #lastName;
@@ -14,7 +12,6 @@ class User {
     this.#age = age;
   }
 
-  // Getters and Setters
   get age() {
     return this.#age;
   }
