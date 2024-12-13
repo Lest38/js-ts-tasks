@@ -1,14 +1,13 @@
 class User {
   #firstName;
-  #lastName;
+  #secondName;
   #age;
-
-  constructor(firstName, lastName, age) {
-    if (typeof firstName !== 'string' || typeof lastName !== 'string' || !Number.isInteger(age)) {
-      throw new Error('Invalid data type: firstName and lastName should be strings, age should be an integer.');
+  constructor(firstName, secondName, age) {
+    if (typeof firstName !== 'string' || typeof secondName !== 'string' || typeof age !== 'number') {
+      throw new Error();
     }
     this.#firstName = firstName;
-    this.#lastName = lastName;
+    this.#secondName = secondName;
     this.#age = age;
   }
 
@@ -23,57 +22,33 @@ class User {
     this.#age = value;
   }
 
-  set firstName(value) {
-    if (typeof value !== 'string') {
-      throw new Error('firstName must be a string.');
+  set firstName(newFirstName) {
+    if (!newFirstName || typeof newFirstName !== 'string') {
+      throw new Error();
     }
-    this.#firstName = value;
+    this.#firstName = newFirstName;
   }
 
-  set lastName(value) {
+  set secondName(value) {
     if (typeof value !== 'string') {
       throw new Error('lastName must be a string.');
     }
-    this.#lastName = value;
+    this.#secondName = value;
   }
 
   get name() {
-    return `${this.#firstName} ${this.#lastName}`;
-  }
-
-  introduce() {
-    return `My name is ${this.name}, I'm ${this.#age}`;
+    return `${this.#firstName} ${this.#secondName}`;
   }
 
   celebrateBirthday() {
     this.#age += 1;
+    return this.#age;
+  }
+
+  introduce() {
+    return `My name is ${this.#firstName} ${this.#secondName}, I'm ${this.#age}`;
   }
 }
-
-// Utility Functions
-const createUser = (firstName, secondName, age) => {
-  return new User(firstName, secondName, age);
-};
-
-const createUsers = data => {
-  return data.map(({ firstName, secondName, age }) => createUser(firstName, secondName, age));
-};
-
-const findUsersByAge = (users, age) => {
-  return users.filter(user => user.age === age);
-};
-
-const createUsersSortFn = TestUtils => {
-  return users => users.sort(TestUtils.comparator);
-};
-
-const celebrate = users => {
-  users.forEach((user, index) => {
-    if (index % 2 === 1) {
-      user.celebrateBirthday();
-    }
-  });
-};
 
 /**
  * Create a class named User
@@ -98,14 +73,18 @@ module.exports.createUser = function (firstName, secondName, age) {
  * @returns {Array<User>}
  */
 module.exports.createUsers = function (data) {
-  return data.map(({ firstName, secondName, age }) => this.createUser(firstName, secondName, age));
+  let users = [];
+  for (let i = 0; i < data.length; i++) {
+    users.push(new User(data[i].firstName, data[i].secondName, data[i].age));
+  }
+  return users;
 };
 
 /**
  * Find Users in Array of Users who's age equals the provided age
- * @param {Array<User>} users
+ * @param {Array<Users>} users
  * @param {number} age
- * @returns {Array<User>}
+ * @returns {Array<Users>}
  */
 module.exports.findUsersByAge = function (users, age) {
   return users.filter(user => user.age === age);
@@ -128,9 +107,10 @@ module.exports.createUsersSortFn = function (TestUtils) {
  * @return {Array<User>}
  */
 module.exports.celebrate = function (users) {
-  users.forEach((user, index) => {
-    if (index % 2 !== 0) {
-      user.celebrateBirthday();
+  for (let i = 0; i < users.length; i++) {
+    if (i % 2 === 0) {
+      users[i].celebrateBirthday();
     }
-  });
+  }
+  return users;
 };
