@@ -4,5 +4,22 @@
  * @returns {number}
  */
 module.exports.getDaysToNewYear = function getDaysToNewYear(targetDate: Date | string): number {
-  throw new Error('Not implemented'); // delete this line and write your code
+  let currentDate: Date;
+
+  if (typeof targetDate === 'string') {
+    const [day, month, year] = targetDate.split('.').map(Number);
+    if (day === undefined || month === undefined || year === undefined) {
+      throw new Error('Invalid date');
+    }
+    currentDate = new Date(year, month - 1, day);
+  } else {
+    currentDate = new Date(targetDate);
+  }
+
+  const nextYear = 2023;
+  const newYearEve = new Date(nextYear, 11, 31, 23, 59, 59);
+
+  const timeDifference = newYearEve.getTime() - currentDate.getTime();
+
+  return Math.round(timeDifference / (1000 * 60 * 60 * 24));
 };
